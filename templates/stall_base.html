@@ -85,11 +85,13 @@
             {% if user.is_authenticated %}
             <h6>Logged in as: {{user.username}}</h6>
             {% endif %}
+            <br>
             <nav>
 <!--
                 <a onclick="darkMode()">
                     <ion-icon title="Dark Mode" size="small" name="contrast-outline"></ion-icon>
                 </a> -->
+                <hr>
                 <a href="#" title="Online Portfolio">
                   <ion-icon src="{% static 'ion-icons/home-outline.svg' %}" size="small"></ion-icon><br>Home
                 </a>
