@@ -1,0 +1,203 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mufudzi Christopher Online Portfolio</title>
+    <meta name="description" content="An Online Portfolio for Mufudzi Christopher Web Development Solutions" />
+    <meta name="keywords" content="African Quizine, ready meals, recipes, ingredients, cooking resources, culture, African countries, food, African continent cultures" />
+    <meta name="author" content="Mufudzi Christopher" />
+    <link rel="shortcut icon" href="{% static 'images/brand.png' %}">
+    <!-- food icons -->
+    <link rel="stylesheet" type="text/css" href="{% static 'more/css/organicfoodicons.css' %}" />
+    <!-- demo styles -->
+    <link id="africa_stylesheet" rel="stylesheet" type="text/css" href="{% static 'css/demo.css' %}" />
+    <!-- menu styles -->
+    <link rel="stylesheet" type="text/css" href="{% static 'more/css/component.css' %}" />
+    <script src="{% static 'more/js/modernizr-custom.js' %}"></script>
+        <script src="{% static 'js/cart.js' %}"></script>
+
+</head>
+
+<body>
+    <!-- Main container -->
+    <div class="container">
+        <!-- Blueprint header -->
+        <header class="bp-header ">
+          <hr style="color:black">
+<br>
+            <nav>
+                <a href="{% url 'home:home' %}" title="Online Portfolio">
+                  <ion-icon src="{% static 'ion-icons/home-outline.svg' %}" size="small"></ion-icon><br>Home
+                </a>
+                <a href="{% url 'Axis:contact' %}" title="Contact">
+                  <ion-icon src="{% static 'ion-icons/mail-outline.svg' %}" size="small"></ion-icon><br>Contact
+                </a>
+
+                <a href="{% url 'account:register' %}" title="Create Account">
+                  <ion-icon src="{% static 'ion-icons/person-add-outline.svg' %}" size="small"></ion-icon><br>Register
+                </a>
+                <a href="{% url 'account:login' %}" title="Log in">
+                  <ion-icon src="{% static 'ion-icons/log-in-outline.svg' %}" size="small"></ion-icon><br>Login
+                </a>
+
+            </nav>
+            <hr style="color:black">
+
+        </header>
+
+<div class="view">
+
+  <!-- Grid -->
+
+  <section class="grid grid--loader">
+    {% block body  %}
+
+    {% endblock  %}</section>
+</div>
+    <!-- /view -->
+    <script src="{% static 'more/js/classie.js' %}"></script>
+    <script src="{% static 'more/js/dummydata.js' %}"></script>
+    <script src="{% static 'more/js/main.js' %}"></script>
+    <script>
+        (function() {
+            var menuEl = document.getElementById('ml-menu'),
+                mlmenu = new MLMenu(menuEl, {
+                    // breadcrumbsCtrl : true, // show breadcrumbs
+                    // initialBreadcrumb : 'all', // initial breadcrumb text
+                    backCtrl: false, // show back button
+                    // itemsDelayInterval : 60, // delay between each menu item sliding animation
+                    onItemClick: loadDummyData // callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
+                });
+
+            // mobile menu toggle
+            var openMenuCtrl = document.querySelector('.action--open'),
+                closeMenuCtrl = document.querySelector('.action--close');
+
+            openMenuCtrl.addEventListener('click', openMenu);
+            closeMenuCtrl.addEventListener('click', closeMenu);
+
+            function openMenu() {
+                classie.add(menuEl, 'menu--open');
+                closeMenuCtrl.focus();
+            }
+
+            function closeMenu() {
+                classie.remove(menuEl, 'menu--open');
+                openMenuCtrl.focus();
+            }
+
+            // simulate grid content loading
+            var gridWrapper = document.querySelector('.contentt');
+
+            function loadDummyData(ev, itemName) {
+                ev.preventDefault();
+
+                closeMenu();
+                gridWrapper.innerHTML = '';
+                classie.add(gridWrapper, 'content--loading');
+                setTimeout(function() {
+                    classie.remove(gridWrapper, 'content--loading');
+                    gridWrapper.innerHTML = '<ul class="productts">' + dummyData[itemName] + '<ul>';
+                }, 700);
+            }
+        })();
+    </script>
+
+<script type="text/javascript">
+
+    function Power_trip(fox){
+                   console.log("Ran Power_trip1: media/", fox)
+                   document.getElementById('main_image').src = fox
+                   }
+
+</script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.1.2/dist/ionicons/ionicons.js"></script>
+
+    <script type="text/javascript">
+        document.addEventListener('mousemove', e => {
+
+            let bubles = document.createElement('bubles');
+            let x = e.pageX;
+            let y = e.pageY;
+            bubles.style.left = x + "px";
+            bubles.style.top = y + "px";
+            let size = Math.random() * 100;
+            bubles.style.width = 1 + size + "px";
+            bubles.style.height = 1 + size + "px";
+
+            document.body.appendChild(bubles);
+            setTimeout(function() {
+                bubles.remove();
+            }, 1100);
+        });
+
+
+
+
+
+        var africa_theme = localStorage.getItem('africa_theme')
+        var africa_spinner = localStorage.getItem('africa_spinner')
+
+        console.log("africa_theme:", africa_theme)
+        console.log("africa_spinner:", africa_spinner)
+        if (africa_theme == null) {
+            lightMode()
+        } else {
+            document.getElementById('africa_stylesheet').href = africa_theme
+
+        }
+
+
+        if (africa_spinner == null) {
+            lightMode()
+        } else {
+            document.getElementById('africa_spinner').src = africa_spinner
+
+        }
+
+        function darkMode() {
+            console.log("DarkMode Ran")
+            swapStyleDark()
+            swapImageDark()
+        }
+
+        function swapStyleDark() {
+            console.log("Dark Style Ran")
+            document.getElementById('africa_stylesheet').href = "{% static 'css/demo-dark.css' %}"
+            localStorage.setItem('africa_theme', "{% static 'css/demo-dark.css' %}")
+        }
+
+        function swapImageDark() {
+            console.log("Dark Image Ran")
+            document.getElementById('africa_spinner').src = "{% static 'images/africa-dark.png' }"
+            localStorage.setItem('africa_spinner', "{% static 'images/africa-dark.png' %}")
+
+        }
+
+        function lightMode() {
+            console.log("Light Mode Ran")
+            swapStyleLight()
+            swapImageLight()
+
+        }
+
+        function swapStyleLight() {
+            console.log("Light Style Ran")
+            document.getElementById('africa_stylesheet').href = "{% static 'css/demo.css' %}"
+            localStorage.setItem('africa_theme', "{% static 'css/demo.css' %}")
+        }
+
+        function swapImageLight() {
+            console.log("Light Image Ran")
+            document.getElementById('africa_spinner').src = "{% static 'images/africa-light.png' %}"
+            localStorage.setItem('africa_spinner', "{% static 'images/africa-light.png' %}")
+        }
+    </script>
+</body></html>

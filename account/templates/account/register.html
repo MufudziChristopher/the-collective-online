@@ -1,0 +1,69 @@
+{% extends 'menu_base.html' %}
+
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+
+
+<div class="view">
+  <section class="grid">
+
+<h2>Register</h2>
+<form method="post" novalidate>
+        {% csrf_token %}
+
+
+                    {% for field in form %}
+                {% for error in field.errors %}
+                  <p style="color: red;">{{error}}</p>
+                {% endfor %}
+              {% endfor %}
+
+              {% if form.non_field_errors %}
+                <div style="color:red;">
+                  <p>{{form.non_field_errors}}</p>
+                </div>
+              {% endif %}
+      <div class="" data-validate="Username is required">
+        <ion-icon size="small" name="mail-outline"></ion-icon><br>Email<br>
+
+        <input type="text" style="border-radius: 5px; padding: 5px" name="email" id="id_email" autofocus placeholder="Email: ">
+      </div>
+      <br>
+      <div >
+        <ion-icon size="small" name="person-outline"></ion-icon><br>Full Name<br>
+      <input type="text"  style="border-radius: 5px; padding: 5px" name="username" placeholder="Full Name: " maxlength="30"  required id="id_username">
+    </div>
+        <br>
+
+        <div>
+          <div>
+      <ion-icon name="phone-portrait-outline" size="small"></ion-icon><br>Phone Number<br>
+      <input type="text" style="border-radius: 5px; padding: 5px" name="phone" maxlength="200" required id="id_phone" placeholder="Phone Number:">
+    </div>
+          <br>
+
+    <div>
+<ion-icon size="small" name="lock-open-outline"></ion-icon><br>Password<br>
+<input style="border-radius: 5px; padding: 5px"  type="password" name="password1" autocomplete="new-password" placeholder="Password:" required id="id_password1">
+    </div>
+          <br>
+
+    <div>
+<ion-icon size="small" name="lock-closed-outline"></ion-icon> <br>Confirm Password<br>
+<input style="border-radius: 5px; padding: 5px"placeholder="Password Confirmation: " type="password" name="password2" autocomplete="new-password" required id="id_password2">
+
+
+    </div>
+          <br>
+
+  <button class="action action--button-btn" type="submit" >Register</button>
+
+</form>
+
+
+  </section>
+</div><br>
+
+{% endblock %}
